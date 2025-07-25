@@ -3,8 +3,6 @@ name: Build and Test .NET
 on:
   push:
     branches: [main]
-  pull_request:
-    branches: [main]
 
 jobs:
   build-and-test:
@@ -20,10 +18,10 @@ jobs:
         dotnet-version: 8.0.x
 
     - name: Restaurar dependências
-      run: dotnet restore
+      run: dotnet restore TaskProcessor.sln
 
-    - name: Compilar projeto
-      run: dotnet build --no-restore --configuration Release
+    - name: Compilar solução
+      run: dotnet build TaskProcessor.sln --no-restore --configuration Release
 
     - name: Executar testes
-      run: dotnet test --no-build --configuration Release --verbosity normal
+      run: dotnet test TaskProcessor.sln --no-build --configuration Release --verbosity normal
